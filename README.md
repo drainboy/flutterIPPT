@@ -1,6 +1,6 @@
-# ippt
+# Flutter IPPT
 
-A new Flutter project.
+An IPPT Calculator but in Flutter
 
 ## Getting Started
 
