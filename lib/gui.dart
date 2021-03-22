@@ -1,21 +1,10 @@
+// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
-
-var gender = "male";
-num age = 34;
-num numOfPushUps = 40;
-num numOfSitUps = 40;
-String runTime = "11:00";
-int score = 0;
-
-/*score += pointsForPushUps(age, numOfPushUps);
-  score += pointsForSitUps(age, numOfSitUps);
-  score += pointsForRunning(age, runTime);
-  print(pointsForPushUps(age, numOfPushUps));
-  print(pointsForSitUps(age, numOfSitUps));
-  print(pointsForRunning(age, runTime));
-  print("You scored " + score.toString());*/
 
 double h1FontSize = 25.0;
 
@@ -54,49 +43,18 @@ station(image, name, count) => Column(children: [
           ]))
     ]);
 
-class ItemCounter extends StatefulWidget {
-  final String name;
-  int counter;
-
-  ItemCounter({this.name, this.counter});
-
-  @override
-  _ItemCounterState createState() => _ItemCounterState();
-}
-
-class _ItemCounterState extends State<ItemCounter> {
-  void _increment() {
-    setState(() {
-      if (widget.counter < 60) {
-        widget.counter++;
-      }
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (widget.counter > 16) {
-        widget.counter--;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-      IconButton(icon: Icon(Icons.arrow_left), onPressed: _decrement),
-      Text("${widget.counter}", style: TextStyle(fontSize: 20)),
-      IconButton(icon: Icon(Icons.arrow_right), onPressed: _increment),
-    ]);
-  }
-}
-
 var agegroup = Container(
     child: Column(children: [
   Container(
       height: 30,
       child: Text("Age Group", style: TextStyle(fontSize: h1FontSize))),
-  ItemCounter(name: "ageGroup", counter: 18)
+  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    Icon(Icons.arrow_back),
+    Icon(Icons.arrow_left),
+    Text("18", style: TextStyle(fontSize: 20)),
+    Icon(Icons.arrow_right),
+    Icon(Icons.arrow_forward),
+  ]),
 ]));
 
 var reward = Container(
@@ -114,20 +72,17 @@ class MyApp extends StatelessWidget {
       title: "IPPT Calculator",
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(
-            title: Text("IPPT Calculator"),
-          ),
           body: ListView(padding: const EdgeInsets.all(8), children: [
-            agegroup,
-            Divider(),
-            station("https://image.flaticon.com/icons/png/512/2548/2548530.png",
-                "Push up", "00"),
-            station("https://image.flaticon.com/icons/png/512/2548/2548429.png",
-                "Sit up", "00"),
-            station("https://image.flaticon.com/icons/png/512/2554/2554042.png",
-                "2.4km Run", "00:00"),
-            reward
-          ])),
+        agegroup,
+        Divider(),
+        station("https://image.flaticon.com/icons/png/512/2548/2548530.png",
+            "Push up", "00"),
+        station("https://image.flaticon.com/icons/png/512/2548/2548429.png",
+            "Sit up", "00"),
+        station("https://image.flaticon.com/icons/png/512/2554/2554042.png",
+            "2.4km Run", "00:00"),
+        reward
+      ])),
     );
   }
 }
